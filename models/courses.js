@@ -42,6 +42,7 @@ const CourseScheme = new Schema({
     required: true,
   },
   cardVideo: [ItemCardVideo],
+  category: [String],
   tanggal_dibuat: {
     type: Date,
     default: Date.now(),
