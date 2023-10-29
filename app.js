@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import { Users } from './models/user.js';
+
 
 const app = express();
 dotenv.config();
@@ -18,13 +20,15 @@ const connect = async () => {
   }
 };
 
+
+
 // Start the server
-app.listen(3000, () => {
-  connect()
-    .then(() => {
-      console.log('Server is listening on port 3000');
-    })
-    .catch((err) => {
-      console.error('Error starting the server: ' + err);
-    });
+app.listen(process.env.PORT, async() => {
+  try{
+  await connect()
+  // await user.save()
+  console.log("server was listening on port " + process.env.PORT )
+  }catch (err){
+    console.log(err)
+  }
 });
