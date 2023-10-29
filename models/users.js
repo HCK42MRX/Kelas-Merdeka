@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const usersSchema = new Schema({
+const UsersSchema = new Schema({
   username: {
     type: String,
     required: true,
@@ -25,6 +25,6 @@ const usersSchema = new Schema({
   courses_yang_dimiliki: [String],
   wishlist: [String], 
 });
-const Users = mongoose.model("users", usersSchema);
+const Users = mongoose.model("users", UsersSchema);
 
 export { Users };
