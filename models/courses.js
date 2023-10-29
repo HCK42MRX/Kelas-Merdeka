@@ -1,6 +1,33 @@
 import mongoose, { Schema } from "mongoose";
 
-const courseScheme = new Schema({
+
+const ItemCardVideo  = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  url_video: {
+    // dummy video
+    type: String,
+    required: true,
+  },
+  duration: {
+    type: String,
+    required: true,
+  },
+  quiz_interactive: {
+    type: Boolean,
+    default: false,
+  },
+  in_duration: String,
+  tanggal_dibuat: {
+    type: Date,
+    default: Date.now(),
+  },
+})
+
+
+const CourseScheme = new Schema({
   author: {
     type: String,
     required: true,
@@ -14,36 +41,13 @@ const courseScheme = new Schema({
     type: [String],
     required: true,
   },
-  card_video: {
-    title: {
-      type: String,
-      required: true,
-    },
-    url_video: {
-      // dummy video
-      type: [String],
-      required: true,
-    },
-    duration: {
-      type: String,
-      required: true,
-    },
-    quiz_interactive: {
-      type: Boolean,
-      default: false,
-    },
-    in_duration: [String],
-    tanggal_dibuat: {
-      type: Date,
-      default: Date.now(),
-    },
-  },
+  cardVideo: [ItemCardVideo],
   tanggal_dibuat: {
     type: Date,
     default: Date.now(),
   },
 });
 
-const Courses = mongoose.model("courses", courseScheme);
+const Courses = mongoose.model("courses", CourseScheme);
 
 export { Courses };
