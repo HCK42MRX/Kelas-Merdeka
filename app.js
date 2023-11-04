@@ -1,9 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { loginRouter } from './routes/login.js';
-import { signUpRouter } from './routes/sign-up.js';
-import { uploadRouter } from './routes/upload.js';
+import { loginRouter } from './src/routes/login.js';
+import { signUpRouter } from './src/routes/sign-up.js';
+import { uploadRouter } from './src/routes/upload.js';
 
 const app = express();
 dotenv.config();
