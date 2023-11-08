@@ -2,7 +2,7 @@
     <nav class="px-4 sm:px-6">
       <div class="flex items-center justify-between flex-row">
         <div class="mt-3">
-          <router-link to="">
+          <router-link to="/">
             <img src="../assets/navbarLogo.png" alt="Logo" class="w-36 sm:w-60">
           </router-link>
         </div>
@@ -51,7 +51,7 @@
             <!-- isi dropdown -->
             <ul v-if="isDropdownOpen" @click="closeDropdown" class="absolute dropDown top-full left-0 mt-2 text-sm text-white p-2 rounded shadow-md w-28">
               <li>
-                  <router-link to="" class="">Layanan 1</router-link>
+                  <router-link to="/login" class="">Layanan 1</router-link>
                 </li>
                 <li>
                   <router-link to="" class="">Layanan 2</router-link>
@@ -62,8 +62,8 @@
 
           <searchBar></searchBar>
 
-          <router-link to="" class="loginbtn px-8 py-2 rounded-lg">Login</router-link>
-          <router-link to="" class="daftarbtn border text-white border-none px-8 py-2 rounded-lg  ml-auto">Daftar</router-link>
+          <router-link to="/login" class="loginbtn px-8 py-2 rounded-lg">Login</router-link>
+          <router-link to="/register" class="daftarbtn border text-white border-none px-8 py-2 rounded-lg  ml-auto">Daftar</router-link>
         </div>
       </div>
     </nav>

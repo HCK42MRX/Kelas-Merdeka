@@ -22,20 +22,20 @@
 
           <ul class="text-white mt-5 text-sm md:text-lg leading-8 font-normal">
             <li class="mb-3"><h3 class="font-semibold">Information</h3></li>
-            <li><router-link>Blog</router-link></li>
-            <li><router-link>Program</router-link></li>
-            <li><router-link>Instructor</router-link></li>
-            <li><router-link>Course</router-link></li>
-            <li><router-link>Promo</router-link></li>
+            <li><router-link to="">Blog</router-link></li>
+            <li><router-link to="">Program</router-link></li>
+            <li><router-link to="">Instructor</router-link></li>
+            <li><router-link to="">Course</router-link></li>
+            <li><router-link to="">Promo</router-link></li>
           </ul>
 
           <ul class="text-white mt-5 text-sm md:text-lg leading-8 font-normal">
             <li class="mb-3"><h3 class="font-semibold">Contact</h3></li>
-            <li><router-link>Help & FAQ</router-link></li>
-            <li><router-link>Partners</router-link></li>
-            <li><router-link>Lorem, ipsum.</router-link></li>
-            <li><router-link>Lorem, ipsum.</router-link></li>
-            <li><router-link>Lorem, ipsum.</router-link></li>
+            <li><router-link to="">Help & FAQ</router-link></li>
+            <li><router-link to="">Partners</router-link></li>
+            <li><router-link to="">Lorem, ipsum.</router-link></li>
+            <li><router-link to="">Lorem, ipsum.</router-link></li>
+            <li><router-link to="">Lorem, ipsum.</router-link></li>
            
           </ul>
 
@@ -72,15 +72,16 @@
         </div>
 
         <div class="flex textLine text-white gap-5 md:gap-8 text-xs md:text-base justify-center md:justify-normal items-center ">
-          <router-link>Privacy Policy</router-link>
-          <router-link>Kelas Merdeka&copy;2023</router-link>
-          <router-link>Term Of Services</router-link>
+          <router-link to="">Privacy Policy</router-link>
+          <router-link to="">Kelas Merdeka&copy;2023</router-link>
+          <router-link to="">Term Of Services</router-link>
         </div>
       </div>
     </div>
     </template>
     
   <script>
+  
   export default {
       name : 'footerMenu'
   }

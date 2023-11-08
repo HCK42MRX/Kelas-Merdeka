@@ -37,7 +37,7 @@
         <h1 class="text-biru block md:mb-0">atau</h1>
         <div class="line mt-12 mb-12 ml-8 md:ml-0"></div>
       </div>
-      <router-link to="" class="text-biru block text-center md:text-center">Sudah punya akun?</router-link>
+      <router-link to="/login" class="text-biru block text-center md:text-center">Sudah punya akun?</router-link>
     </div>
       
       <div class="login-other w-80 mt-16">
