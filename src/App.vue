@@ -1,25 +1,23 @@
 <template lang="html">
-  <header>
-    <NavMenu></NavMenu>
-  </header>
-
-  <homepage></homepage>
-
-  <footer>
-    <footerMenu></footerMenu>
-  </footer>
+  <div id="App">
+    <header v-if="$route.meta.header === 1">
+      <navMenu></navMenu>
+    </header>
+    <router-view></router-view>
+    <footer v-if="$route.meta.footer === 1">
+      <footerMenu></footerMenu>
+    </footer>
+  </div>
 </template>
 <script>
-import NavMenu from './components/navigation.vue';
-import footerMenu from './components/footer.vue';
-import homepage from './components/homepage.vue';
-
+import navMenu from "./components/navigation.vue"
+import footerMenu from "./components/footer.vue"
 
 export default {
+  name : "App",
   components :{
-    NavMenu,
+    navMenu,
     footerMenu,
-    homepage,
   }
   
 }
