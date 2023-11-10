@@ -17,7 +17,6 @@ const UserSchema = new Schema({
     required: true,
     unique: true
   },
-
   // password sudah dibuatkan otomatis oleh passport :)
 
 });

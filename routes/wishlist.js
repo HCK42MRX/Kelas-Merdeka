@@ -1,11 +1,11 @@
 import express from "express";
-import { wishlistCourseController } from "../controllers/wishlist.js";
+import { getWishlistController, wishlistCourseController } from "../controllers/wishlist.js";
 
 
 const router = express.Router();
 
 
-router.post('/:id', wishlistCourseController)
+router.post('/:id', wishlistCourseController).get('/', getWishlistController)
 
 
 export {router as wishlistRouter}

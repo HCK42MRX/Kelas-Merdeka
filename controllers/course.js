@@ -1,9 +1,10 @@
 import { Roles } from "../models/roles.js";
 import { Courses } from "../models/courses.js";
+import { Video } from "../models/videos.js";
 
 const getCourseController = async (req, res) => {
   try {
-    const showAllCourses = await Courses.find({});
+    const showAllCourses = await Video.find({}).populate("course_id");
     return res.status(200).json({result: showAllCourses });
   } catch (err) {
     return res

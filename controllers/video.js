@@ -11,21 +11,6 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
-const getVideoController = async (req, res) => {
-  try {
-    const courseId = req.params.courseId;
-    const searchCourse = await Video.findOne({ course_id: courseId });
-
-    if (!searchCourse) {
-      return res.json({ success: false, message: "course tidak ditemukan" });
-    }
-
-    return res.status(200).json({ result: searchCourse });
-  } catch (error) {
-    return res.json({ success: false, message: error });
-  }
-};
-
 const uploadController = async (req, res) => {
   if (!req.isAuthenticated()) {
     return res
@@ -60,10 +45,6 @@ const uploadController = async (req, res) => {
     if (!req.file) {
       return res.status(400).send("Tidak ada file yang diunggah.");
     }
-    if (req.file.mimetype !== "video/mp4") {
-      return res.status(400).send("file video harus berupa video mp4");
-    }
-
     const { error } = await supabase.storage
       .from("kelas-merdeka-video")
       .upload(`${req.file.originalname}`, req.file.buffer);
@@ -101,4 +82,4 @@ const uploadController = async (req, res) => {
       .json({ message: "Gagal mengunggah file ke Supabase.", err });
   }
 };
-export { uploadController, getVideoController };
+export { uploadController};

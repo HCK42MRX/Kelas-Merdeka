@@ -2,13 +2,13 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import session from 'express-session';
-import timeout from 'connect-timeout'
 import { registerRouter } from './routes/register.js';
 import { uploadRouter } from './routes/video.js';
 import { loginRouter } from './routes/login.js';
 import { teachingRouter } from './routes/teaching.js';
 import { courseRouter } from './routes/course.js';
 import { wishlistRouter } from './routes/wishlist.js';
+import { routerUserProfile } from './routes/userProfile.js';
 import { User } from './models/users.js';
 import passport from 'passport';
 import localStrategy from 'passport-local'
@@ -61,6 +61,7 @@ app.use('/videos', uploadRouter)
 app.use('/teaching', teachingRouter)
 app.use('/courses', courseRouter)
 app.use('/wishlist', wishlistRouter)
+app.use('/user-profile', routerUserProfile)
 // Start the server
 app.listen(process.env.PORT, async() => {
   try{
