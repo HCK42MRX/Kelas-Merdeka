@@ -3,15 +3,15 @@ import mongoose, { Schema } from "mongoose";
 const VideosSchema = new Schema(
   {
     title: {
-      type: String,
+      type: [String],
       required: true,
     },
     video_url: {
-      type: String,
-      required: true,
+      type: [String],
+      required: true
     },
     duration: {
-      type: Number,
+      type: [Number],
       required: true,
       default: 0,
     },

@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import session from 'express-session';
+import timeout from 'connect-timeout'
 import { registerRouter } from './routes/register.js';
 import { uploadRouter } from './routes/video.js';
 import { loginRouter } from './routes/login.js';
@@ -15,6 +16,7 @@ localStrategy.Strategy;
 
 const app = express();
 dotenv.config();
+
 
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
