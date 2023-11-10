@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { uploadController } from "../controllers/video.js";
+import { getVideoController, uploadController } from "../controllers/video.js";
 
 const router = express.Router();
 
@@ -11,6 +11,6 @@ const upload = multer({ storage: storage });
 
 
 
-router.post('/:courseId', upload.single('file'),uploadController)
+router.post('/:courseId', upload.single('file'),uploadController).get('/:courseId', getVideoController)
 
 export {router as uploadRouter}

@@ -4,7 +4,6 @@ import { Roles } from "../models/roles.js";
 import { Courses } from "../models/courses.js";
 import Ffmpeg from "fluent-ffmpeg";
 import dotenv from "dotenv";
-import Readable from "stream";
 dotenv.config();
 
 const supabase = createClient(
@@ -12,23 +11,44 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
+const getVideoController = async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    const searchCourse = await Video.findOne({ course_id: courseId });
+
+    if (!searchCourse) {
+      return res.json({ success: false, message: "course tidak ditemukan" });
+    }
+
+    return res.status(200).json({ result: searchCourse });
+  } catch (error) {
+    return res.json({ success: false, message: error });
+  }
+};
+
 const uploadController = async (req, res) => {
   if (!req.isAuthenticated()) {
-    return res.status(403).json({ message: "kamu belum login" });
+    return res
+      .status(401)
+      .json({ success: false, message: "kamu belum login" });
   }
 
   const userId = req.user._id;
 
-  const role = await Roles.findOne({ user_id: userId });
-  if (role.role !== "instruktur") {
+  const role = await Roles.findOne({user_id: userId});
+  if (!role || role.role !== "instruktur") {
     return res
       .status(401)
-      .json({ message: "anda dilarang masuk ke halaman ini" });
+      .json({
+        success: false,
+        message: "kamu harus menjadi instruktur untuk masuk ke halaman ini",
+        role: role
+      });
   }
 
   const courseId = req.params.courseId;
 
-  const verifiedCourseId = await Courses.findById(courseId);
+  const verifiedCourseId = await Courses.findOne({_id: courseId});
 
   if (!verifiedCourseId) {
     return res
@@ -81,4 +101,4 @@ const uploadController = async (req, res) => {
       .json({ message: "Gagal mengunggah file ke Supabase.", err });
   }
 };
-export { uploadController };
+export { uploadController, getVideoController };
