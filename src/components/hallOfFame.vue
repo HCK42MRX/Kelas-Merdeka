@@ -6,24 +6,25 @@
       </div>
   
       <div ref="cardScrollWrapper" class="card-scroll-wrapper overflow-y-hidden overflow-x-auto pl-0 md:pl-32 flex gap-8">
-        <div v-for="(card, index) in cards" :key="index" class="card card-stroke w-64 h-80 rounded-2xl">
+        <div v-for="(card, index) in cards" :key="index" class="card card-stroke w-64 h-auto rounded-2xl">
           <div class="card-img">
-            <img src="../assets/defaultImg.jpg" class="rounded-t-2xl h-36 w-64" alt="" srcset="" style="max-width: 100%;" />
+            <img :src="require(`@/assets/${card.image || ''}`)" class="rounded-t-2xl h-40 w-64" alt="" style="max-width: 100%;" />
+
           </div>
           <div class="card-desc flex flex-col items-start p-3 text-white">
             <h3 class="font-medium text-lg mb-2 w-60 h-16">{{ card.title }}</h3>
             <small class="text-xs mb-2 ungu">{{ card.modules }}</small>
             <small class="text-xs ungu">{{ card.author }}</small>
-
             <div class="rank mt-4 flex space-x-24">
               <h1 class="ungu font-bold">#TOP {{ index + 1 }}</h1>
-              <a href="" class="px-5 py-1 rounded-md background-biru text-white text-sm">Lihat</a>
+              <a href="/detail" class="px-5 py-1 rounded-md background-biru text-white text-sm">Lihat</a>
             </div>
             
           </div>
         </div>
       </div>
     </div>
+
   </template>
   
   <script>
@@ -36,28 +37,36 @@
             title: "Back-End Developer Fundamental Course",
             modules: "15 Modul",
             author: "Alexander",
-            image: "../src/assets/back-end-image.jpg",
-          },
+            image: "backendImg.png",
+           },
           {
             title: "Front-End Developer Advanced Course",
             modules: "20 Modul",
             author: "Emma",
+            image: "defaultImg.jpg",
+
           },
 
           {
             title: "Full-Stack Developer Bootcamp",
             modules: "25 Modul",
             author: "John",
+            image: "defaultImg.jpg",
+
         },
         {
             title: "UX/UI Design Essentials",
             modules: "18 Modul",
             author: "Sophie",
+            image: "defaultImg.jpg",
+
         },
         {
             title: "Data Science Fundamentals",
             modules: "22 Modul",
             author: "David",
+            image: "defaultImg.jpg",
+
         },
 
         ],

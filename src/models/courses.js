@@ -1,32 +1,37 @@
 import mongoose, { Schema } from "mongoose";
 
-
-const ItemCardVideo  = new Schema({
-  
-})
-
-
-const CourseScheme = new Schema({
-  author: {
-    type: String,
-    required: true,
+const CourseScheme = new Schema(
+  {
+    instruktur: {
+      type: String,
+      required: true,
+    },
+    nama_course: {
+      type: String,
+      required: true,
+    },
+    jumlah_video: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    rating: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    instruktur_id: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+    },
+    category: {
+      type: [String],
+      required: true,
+    },
   },
-  nama_course: {
-    type: String,
-    required: true,
-  },
-  rating: String,
-  tag: {
-    type: [String],
-    required: true,
-  },
-  cardVideo: [ItemCardVideo],
-  category: [String],
-  tanggal_dibuat: {
-    type: Date,
-    default: Date.now(),
-  },
-});
+  { timestamps: true }
+);
 
 const Courses = mongoose.model("courses", CourseScheme);
 

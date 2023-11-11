@@ -1,8 +1,11 @@
 <template lang="html">
     <div class="container px-5 md:px-0 flex flex-col md:flex-row justify-center items-center gap-10">
         <div class="video-container md:px-0 w-full h-64 md:h-96 md:w-2/3 lg:w-1/2 xl:w-2/3">
-            <video class="rounded-xl w-full h-full" src="" frameborder="0" allowfullscreen></video>
+            <video ref="videoElement" class="rounded-xl w-full h-full" controls>
+              <source src="../assets/video/backendDev.mp4" type="video/mp4">
+            </video>
           </div>
+          
   
       <div class="card card-stroke  w-full md:w-64 h-80 h-full md:h-96 rounded-2xl">
         <div class="card-img">
@@ -102,55 +105,101 @@
     <div class="button mx-auto text-center mt-8 mb-12">
         <a href="" class="px-5 py-1 rounded-md background-biru text-white text-lg md:text-xl">Lihat lainnya</a>
     </div>
+
+    <!-- modal -->
+
+    <div v-if="modalVisible" class="flex justify-center items-center">
+
+        <div class="container-modal card-review w-80 p-3 text-center rounded-lg">
+            <div class="question mb-3"><h1 class="text-white">Apa itu Backend?</h1></div>
+            <div class="answer-group">
+                <ul>
+                <li class="background-biru rounded-lg mb-2"><a href="#" class="correct text-white">A. Backend mengelola logika dan pemrosesan data di server.</a></li>
+                <li class="background-biru rounded-lg mb-2"><a href="#" class="false text-white">B. Backend bertanggung jawab untuk desain antarmuka pengguna.</a></li>
+                <li class="background-biru rounded-lg mb-2"><a href="#" class="false text-white">C. Backend hanya menangani penyimpanan data di database.</a></li>
+                <li class="background-biru rounded-lg mb-2"><a href="#" class="false text-white">D. Backend tidak memainkan peran penting dalam pengembangan aplikasi.</a></li>
+            </ul>
+        </div>
+    </div>
+    
+
+            </div>
   </template>
   
   <script>
   export default {
-    data() {
-      return {
-        reviews: [
-          { nickname: "Kana", stars: 5, comment: "Senang sekali dengan penjelasan yang singkat & padat namun mudah dipahami." },
-          { nickname: "John", stars: 4, comment: "Great course! Learned a lot." },
-          { nickname: "Alice", stars: 5, comment: "Excellent content and presentation." },
-          { nickname: "Bob", stars: 3, comment: "Some topics could be explained better." },
-          { nickname: "Alpha", stars: 3, comment: "Some topics could be explained better." },
-        ],
-        courses:[
-  {
-    title: "Back-End Developer Fundamental Course",
-    modules: "7 Modules",
-    author: "Kiana Dmitri",
-    image: "../assets/defaultImg.jpg",
+  data() {
+    return {
+      reviews: [
+        { nickname: "Kana", stars: 5, comment: "Senang sekali dengan penjelasan yang singkat & padat namun mudah dipahami." },
+        { nickname: "John", stars: 4, comment: "Great course! Learned a lot." },
+        { nickname: "Alice", stars: 5, comment: "Excellent content and presentation." },
+        { nickname: "Bob", stars: 3, comment: "Some topics could be explained better." },
+        { nickname: "Alpha", stars: 3, comment: "Some topics could be explained better." },
+      ],
+      courses: [
+        {
+          title: "Back-End Developer Fundamental Course",
+          modules: "7 Modules",
+          author: "Kiana Dmitri",
+          image: "../assets/defaultImg.jpg",
+        },
+        {
+          title: "Web Development Basics",
+          modules: "5 Modules",
+          author: "Kiana Dmitri",
+          image: "../assets/defaultImg.jpg",
+        },
+        {
+          title: "Introduction to Programming",
+          modules: "3 Modules",
+          author: "Kiana Dmitri",
+          image: "../assets/defaultImg.jpg",
+        },
+        {
+          title: "Database Management Essentials",
+          modules: "4 Modules",
+          author: "Kiana Dmitri",
+          image: "../assets/defaultImg.jpg",
+        },
+        {
+          title: "Cybersecurity Fundamentals",
+          modules: "6 Modules",
+          author: "Kiana Dmitri",
+          image: "../assets/defaultImg.jpg",
+        },
+      ],
+      modalVisible: true,
+      videoElement: null,
+    };
   },
-  {
-    title: "Web Development Basics",
-    modules: "5 Modules",
-    author: "Kiana Dmitri",
-    image: "../assets/defaultImg.jpg",
-  },
-  {
-    title: "Introduction to Programming",
-    modules: "3 Modules",
-    author: "Kiana Dmitri",
-    image: "../assets/defaultImg.jpg",
-  },
-  {
-    title: "Database Management Essentials",
-    modules: "4 Modules",
-    author: "Kiana Dmitri",
-    image: "../assets/defaultImg.jpg",
-  },
-  {
-    title: "Cybersecurity Fundamentals",
-    modules: "6 Modules",
-    author: "Kiana Dmitri",
-    image: "../assets/defaultImg.jpg",
-  },
-],
-      };
-    },
-  };
-  </script>
+  setupVideo() {
+  this.videoElement = this.$refs.videoElement;
+  this.videoElement.addEventListener('timeupdate', this.checkVideoTime);
+  this.videoElement.addEventListener('play', this.handleVideoPlay); // Add this line
+  this.videoElement.addEventListener('pause', this.handleVideoPause);
+  this.videoElement.addEventListener('ended', this.handleVideoEnded);
+  this.videoElement.load();
+},
+checkVideoTime() {
+  const currentTime = this.videoElement.currentTime;
+  if (currentTime >= 60 && !this.modalVisible) {
+    this.modalVisible = true;
+  }
+},
+handleVideoPlay() { 
+    this.modalVisible = true;   
+},
+handleVideoPause() {
+  this.modalVisible = false;
+},
+handleVideoEnded() {
+  this.modalVisible = false;
+},
+
+};
+
+</script>
   
   <style lang="css">
   .biru {

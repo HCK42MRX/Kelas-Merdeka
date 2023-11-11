@@ -1,30 +1,28 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose"; 
+import passportLocalMongoose from "passport-local-mongoose"; 
 
-const UsersSchema = new Schema({
+
+const UserSchema = new Schema({
   username: {
     type: String,
     required: true,
+    unique: true
   },
-  name: {
+  full_name: {
     type: String,
     required: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  role: {
-    type: String,
-    default: "siswa",
-    required: true,
-  },
-  courses_yang_dimiliki: [String],
-  wishlist: [String], 
-});
-const Users = mongoose.model("users", UsersSchema);
+  // password sudah dibuatkan otomatis oleh passport :)
 
-export { Users };
+});
+
+UserSchema.plugin(passportLocalMongoose); 
+
+const User = mongoose.model("users", UserSchema);
+
+export { User };

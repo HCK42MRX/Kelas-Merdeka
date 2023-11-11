@@ -1,23 +1,25 @@
-import { Users } from "../models/users.js";
+import passport from "passport";
 
-const getUserDataFromDatabase = async (username) => {
-  try {
-    const data = await Users.find({ username });
-    return data;
-  } catch (err) {
-    return err;
+const loginController = (req, res, next) => {
+  if(req.isAuthenticated()){
+    return res.status(200).json({ message: "kamu sudah login." });
   }
-};
 
-const loginController = async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const data = await getUserDataFromDatabase(username);
-  data.forEach((d) => {
-    if (d.password === password) {
-      console.log("berhasil");
+
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
     }
-  });
+    if (!user) {
+      return res.status(401).json({ message: "Autentikasi gagal", info });
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json({ message: "Autentikasi berhasil" });
+    });
+  })(req, res, next);
 };
 
 export { loginController };
